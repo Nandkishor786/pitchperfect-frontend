@@ -68,33 +68,33 @@ const Discover = ({ role }) => {
 
   //Discover.jsx me preferences ko API se fetch karo--temp
   const [debugPrefs, setDebugPrefs] = useState(null);
-  useEffect(() => {
-    const fetchPrefs = async () => {
-      try {
-        const token = user?.token;
-        if (!token) return;
+  // useEffect(() => {
+  //   const fetchPrefs = async () => {
+  //     try {
+  //       const token = user?.token;
+  //       if (!token) return;
 
-        const url =
-          role === "investor"
-            ? "http://localhost:5000/api/onboarding/investor"
-            : "http://localhost:5000/api/onboarding/founder";
+  //       const url =
+  //         role === "investor"
+  //           ? "http://localhost:5000/api/onboarding/investor"
+  //           : "http://localhost:5000/api/onboarding/founder";
 
-        const res = await fetch(url, {
-          headers: { Authorization: `Bearer ${token}` },
-        });
+  //       const res = await fetch(url, {
+  //         headers: { Authorization: `Bearer ${token}` },
+  //       });
 
-        const prefsData = await res.json();
-        setDebugPrefs(prefsData);
+  //       const prefsData = await res.json();
+  //       setDebugPrefs(prefsData);
 
-        // TEMP DEBUG
-        localStorage.setItem("debug_preferences", JSON.stringify(prefsData));
-      } catch (e) {
-        console.error("Failed to fetch prefs", e);
-      }
-    };
+  //       // TEMP DEBUG
+  //       localStorage.setItem("debug_preferences", JSON.stringify(prefsData));
+  //     } catch (e) {
+  //       console.error("Failed to fetch prefs", e);
+  //     }
+  //   };
 
-    fetchPrefs();
-  }, [role, user]);
+  //   fetchPrefs();
+  // }, [role, user]);
 
   //   ye kya karega
   // Founder tab → startup add
@@ -113,59 +113,112 @@ const Discover = ({ role }) => {
   // }, []);
 
   //...................BACKEND.................
+  // useEffect(() => {
+  //   const fetchDiscoverData = async () => {
+  //     try {
+  //       const token = user?.token;
+  //       if (!token) return;
+
+  //       // Investor → Discover Startups
+  //       if (role === "investor") {
+  //         const res = await fetch("http://localhost:5000/discover/startups", {
+  //           headers: {
+  //             Authorization: `Bearer ${token}`,
+  //           },
+  //         });
+
+  //         const result = await res.json();
+  //         // IMPORTANT
+  //         setStartups(result.data || []);
+  //         setIsFallback(!!result.fallback); //  IMPORTANT
+  //         //  TEMP DEBUG (YAHIN ADD KARO)
+  //         localStorage.setItem(
+  //           "discover_debug",
+  //           JSON.stringify({
+  //             role,
+  //             fallback: result.fallback,
+  //             count: result.data?.length || 0,
+  //             preferences: debugPrefs,
+  //           })
+  //         );
+  //       }
+
+  //       // Founder → Discover Investors
+  //       if (role === "founder") {
+  //         const res = await fetch("http://localhost:5000/discover/investors", {
+  //           headers: {
+  //             Authorization: `Bearer ${token}`,
+  //           },
+  //         });
+
+  //         const result = await res.json();
+
+  //         //  IMPORTANT
+  //         setInvestors(result.data || []);
+  //         setIsFallback(!!result.fallback); //  IMPORTANT
+  //         //  TEMP DEBUG (YAHIN ADD KARO)
+  //         localStorage.setItem(
+  //           "discover_debug",
+  //           JSON.stringify({
+  //             role,
+  //             fallback: result.fallback,
+  //             count: result.data?.length || 0,
+  //             preferences: debugPrefs,
+  //           })
+  //         );
+  //       }
+  //     } catch (err) {
+  //       console.error("Discover fetch failed", err);
+  //     }
+  //   };
+
+  //   fetchDiscoverData();
+  // }, [role, user]);
+
+  // ...................BACKEND (PRODUCTION SAFE).................
+  // Discover.jsx me preferences ko API se fetch karo (PRODUCTION SAFE)
+  useEffect(() => {
+    const fetchPrefs = async () => {
+      try {
+        if (!user?.token) return;
+
+        const res = await api.get(
+          role === "investor" ? "/onboarding/investor" : "/onboarding/founder"
+        );
+
+        setDebugPrefs(res.data);
+
+        // TEMP DEBUG
+        localStorage.setItem("debug_preferences", JSON.stringify(res.data));
+      } catch (e) {
+        console.error("Failed to fetch prefs", e);
+      }
+    };
+
+    fetchPrefs();
+  }, [role, user?.token]);
+
   useEffect(() => {
     const fetchDiscoverData = async () => {
       try {
-        const token = user?.token;
-        if (!token) return;
+        if (!user?.token) return;
 
         // Investor → Discover Startups
         if (role === "investor") {
-          const res = await fetch("http://localhost:5000/discover/startups", {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          });
+          const res = await api.get("/discover/startups");
+          const result = res.data;
 
-          const result = await res.json();
-          // IMPORTANT
           setStartups(result.data || []);
-          setIsFallback(!!result.fallback); //  IMPORTANT
-          //  TEMP DEBUG (YAHIN ADD KARO)
-          localStorage.setItem(
-            "discover_debug",
-            JSON.stringify({
-              role,
-              fallback: result.fallback,
-              count: result.data?.length || 0,
-              preferences: debugPrefs,
-            })
-          );
+          setIsFallback(!!result.fallback);
         }
 
         // Founder → Discover Investors
         if (role === "founder") {
-          const res = await fetch("http://localhost:5000/discover/investors", {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          });
+          const res = await api.get("/discover/investors");
+          const result = res.data;
 
-          const result = await res.json();
-
-          //  IMPORTANT
           setInvestors(result.data || []);
-          setIsFallback(!!result.fallback); //  IMPORTANT
-          //  TEMP DEBUG (YAHIN ADD KARO)
-          localStorage.setItem(
-            "discover_debug",
-            JSON.stringify({
-              role,
-              fallback: result.fallback,
-              count: result.data?.length || 0,
-              preferences: debugPrefs,
-            })
-          );
+          setIsFallback(!!result.fallback);
         }
       } catch (err) {
         console.error("Discover fetch failed", err);
@@ -173,7 +226,7 @@ const Discover = ({ role }) => {
     };
 
     fetchDiscoverData();
-  }, [role, user]);
+  }, [role, user?.token]);
 
   //recommendation
   // const recommendedInvestors =
