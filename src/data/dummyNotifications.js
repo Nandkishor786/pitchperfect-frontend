@@ -1,0 +1,38 @@
+export const dummyNotifications = [
+  {
+    id: 1,
+    type: "PROFILE_VIEW",
+    category: "Investor Activity",
+    message: "Michael Chen viewed your profile",
+    time: "5h ago",
+    dateGroup: "Today",
+    isRead: false,
+  },
+  {
+    id: 2,
+    type: "PITCH_SENT",
+    category: "Pitches",
+    message: "You sent a pitch to Emily Rodriguez",
+    time: "1d ago",
+    dateGroup: "Yesterday",
+    isRead: false,
+  },
+  {
+    id: 3,
+    type: "MESSAGE",
+    category: "Messages",
+    message: "New message from Accel Partners",
+    time: "2d ago",
+    dateGroup: "Earlier",
+    isRead: true,
+  },
+  {
+    id: 4,
+    type: "INTEREST",
+    category: "Investor Activity",
+    message: "Sequoia Capital showed interest in your pitch",
+    time: "2d ago",
+    dateGroup: "Earlier",
+    isRead: false,
+  },
+];

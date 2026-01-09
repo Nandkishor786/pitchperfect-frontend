@@ -1,0 +1,17 @@
+<svg width="167" height="31" viewBox="0 0 167 31" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+  <!-- Icon -->
+  <g transform="translate(0,1)">
+    <path d="M13.2371 0H31.2418L18.0047 19.62H0L13.2371 0Z" fill="#147AFF"/>
+    <path d="M14.0333 21.4396L8.90625 29.0389H27.765L41.0021 9.41895H27.0832L18.9731 21.4396H14.0333Z" fill="#5044E5"/>
+  </g>
+
+  <!-- Text -->
+  <text x="48" y="22"
+        font-family="Inter, Poppins, sans-serif"
+        font-size="17"
+        font-weight="700">
+    <tspan fill="#000">PitchPerfect.</tspan><tspan fill="#5044E5"   font-size="18">ai</tspan>
+  </text>
+
+</svg>
