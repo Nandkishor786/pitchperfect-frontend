@@ -223,7 +223,7 @@ const emptyForm = {
 };
 
 const InvestorProfileForm = ({ onSaved }) => {
-  const [form, setForm] = useState(emptyForm);
+  const [form, setForm] = useState(testFormData[0]);
   // const user = JSON.parse(localStorage.getItem("user"));
   // const userId = user?.id;
 

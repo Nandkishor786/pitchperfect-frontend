@@ -80,7 +80,7 @@ const emptyForm = {
   region: "",
 };
 const InvestorCardForm = ({ onSaved, existingData }) => {
-  const [form, setForm] = useState(emptyForm);
+  const [form, setForm] = useState(testData[0]);
 
   /* ====== PREFILL (EDIT MODE) ========== */
   useEffect(() => {
