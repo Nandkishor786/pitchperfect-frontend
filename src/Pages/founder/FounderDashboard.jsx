@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import StatCard from "../../Components/StatCard";
 import { Eye, Send, Heart, TrendingUp, User } from "lucide-react";
 import { fetchFounderDashboardStats } from "../../data/dummyDashboardApi";
-import RecentActivity from "../../components/dashboard/RecentActivity";
+import RecentActivity from "../../Components/dashboard/RecentActivity";
 import { useNavigate } from "react-router-dom";
 import DashboardCTA from "../../components/dashboard/DashboardCTA";
 import WelcomeMessage from "../../Components/dashboard/WelcomeMessage";
