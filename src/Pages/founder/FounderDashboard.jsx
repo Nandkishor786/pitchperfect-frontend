@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import StatCard from "../../components/StatCard";
+import StatCard from "../../Components/StatCard";
 import { Eye, Send, Heart, TrendingUp, User } from "lucide-react";
 import { fetchFounderDashboardStats } from "../../data/dummyDashboardApi";
 import RecentActivity from "../../components/dashboard/RecentActivity";
