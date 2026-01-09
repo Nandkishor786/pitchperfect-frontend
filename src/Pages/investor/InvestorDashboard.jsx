@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import RecentActivity from "../../components/dashboard/RecentActivity";
+import RecentActivity from "../../Components/dashboard/RecentActivity";
 import api from "../../services/api";
 
 const InvestorDashboard = () => {
