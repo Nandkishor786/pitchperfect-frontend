@@ -42,11 +42,12 @@ import api from "../../services/api";
 const FounderDashboard = () => {
   const navigate = useNavigate();
   const [stats, setStats] = useState({
-    profileViews: 0,
-    pitchesSent: 0,
-    interestedInvestors: 0,
-    responseRate: 0,
+    profileViews: { value: 0, change: "No data" },
+    pitchesSent: { value: 0, change: "No data" },
+    interestedInvestors: { value: 0, change: "No data" },
+    responseRate: { value: 0, change: "No data" },
   });
+
   const [loading, setLoading] = useState(true);
   const [feed, setFeed] = useState([]);
 
@@ -93,7 +94,7 @@ const FounderDashboard = () => {
       .catch((err) => {
         console.error("Failed to load activity feed", err);
       });
-    console.log(feed);
+    // console.log(feed);
   }, []);
 
   return (
@@ -103,35 +104,35 @@ const FounderDashboard = () => {
       <WelcomeMessage name={name} role="founder" />
       {/* Stat cards only  */}
       <div className="p-2 grid grid-cols-1 md:grid-cols-4 gap-6">
-        {loading ? (
+        {loading || !stats ? (
           <p className="text-gray-400">Loading...</p>
         ) : (
           <>
             <StatCard
               title="Profile Views"
-              value={stats.profileViews}
-              // change={stats.profileViewsChange}
+              value={stats.profileViews.value}
+              change={stats.profileViews.change}
               icon={Eye}
             />
 
             <StatCard
               title="Pitches Sent"
-              value={stats.pitchesSent}
-              // change={stats.pitchesThisWeek}
+              value={stats.pitchesSent.value}
+              change={stats.pitchesSent.change}
               icon={Send}
             />
 
             <StatCard
               title="Interested Investors"
-              value={stats.interestedInvestors}
-              change={stats.newInterested}
+              value={stats.interestedInvestors.value}
+              change={stats.interestedInvestors.change}
               icon={Heart}
             />
 
             <StatCard
               title="Response Rate"
-              value={stats.interestedInvestors}
-              // change={stats.responseImprovement}
+              value={`${stats.responseRate.value}%`}
+              change={stats.responseRate.change}
               icon={TrendingUp}
             />
           </>
