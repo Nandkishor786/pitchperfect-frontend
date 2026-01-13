@@ -1,3 +1,5 @@
+import scrollbar from "tailwind-scrollbar";
+
 export default {
   content: ["./index.html", "./src/**/*.{js,jsx}"],
   darkMode: "class", //  dark mode enable
@@ -11,5 +13,5 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: [scrollbar],
 };

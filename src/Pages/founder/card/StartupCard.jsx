@@ -69,7 +69,7 @@ const StartupCard = ({
     await api.post("/activities", {
       type: "VIEW",
       targetType: "startup",
-      targetId: data._id, 
+      targetId: data._id,
     });
   };
 
@@ -293,13 +293,13 @@ const StartupCard = ({
     <>
       <div
         onClick={!isFounderView ? handleView : undefined}
-        className="bg-white border rounded-2xl p-6 hover:shadow-lg transition cursor-pointer"
+        className="bg-white border rounded-2xl p-4 sm:p-6 hover:shadow-lg transition cursor-pointer"
       >
         {/* HEADER */}
-        <div className="flex justify-between items-start">
+        <div className="flex justify-between items-start gap-3">
           <div>
             <div className="flex items-center gap-2 flex-wrap">
-              <h3 className="font-semibold text-lg text-gray-900">
+              <h3 className="font-semibold text-base sm:text-lg text-gray-900">
                 {data.name}
               </h3>
 
@@ -315,7 +315,9 @@ const StartupCard = ({
               </span>
             </div>
 
-            <p className="text-sm text-gray-500 mt-1">{data.tagline}</p>
+            <p className="text-xs sm:text-sm text-gray-500 mt-1">
+              {data.tagline}
+            </p>
           </div>
 
           {!isFounderView && (
@@ -326,7 +328,7 @@ const StartupCard = ({
               }}
             >
               <Heart
-                className={`w-5 h-5 ${
+                className={`w-5 h-5sm:w-5 sm:h-5 p-1 ${
                   added
                     ? "text-red-500 fill-red-500"
                     : "text-gray-400 hover:text-red-500"
@@ -337,13 +339,13 @@ const StartupCard = ({
         </div>
 
         {/* INFO */}
-        <div className="mt-4 space-y-2 text-sm text-gray-600">
+        <div className="mt-3 sm:mt-4 space-y-2 text-xs sm:text-sm text-gray-600">
           <p className="flex items-center gap-2">
             <DollarSign className="w-4 h-4" />
             Funding Ask: {data.fundingAsk?.label ?? "Not disclosed"}
           </p>
           {data.traction && (
-            <div className="mt-4 grid grid-cols-3 gap-3 text-xs text-gray-700">
+            <div className="mt-3 sm:mt-4 grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-3 text-xs text-gray-700">
               <div className="flex items-center gap-1">
                 <DollarSign className="w-4 h-4 text-green-600" />
                 {data.traction.revenue}
@@ -373,7 +375,7 @@ const StartupCard = ({
               : "Location not disclosed"}
           </p>
 
-          <p className="flex items-center gap-2 flex-wrap">
+          <p className="flex items-center gap-1 sm:gap-2 flex-wrap">
             {data.industries?.map((ind, idx) => (
               <span
                 key={idx}
@@ -386,7 +388,7 @@ const StartupCard = ({
         </div>
 
         {/* ACTIONS */}
-        <div className="flex gap-3 mt-5">
+        <div className="flex flex-col sm:flex-row gap-3 mt-4 sm:mt-5">
           {/* LEFT BUTTON */}
           {isFounderView ? (
             !data.profileLinked ? (
@@ -395,7 +397,7 @@ const StartupCard = ({
                   e.stopPropagation();
                   handleAddProfile();
                 }}
-                className="flex-1 border border-indigo-600 text-indigo-600 py-2.5 rounded-lg"
+                className="flex-1 border border-indigo-600 text-indigo-600 py-3 sm:py-2.5 rounded-lg text-sm"
               >
                 Add Profile
               </button>
@@ -411,7 +413,7 @@ const StartupCard = ({
               </button>
             )
           ) : (
-            // 👇 INVESTOR SIDE (NO profileLinked CHECK)
+            // INVESTOR SIDE (NO profileLinked CHECK)
             <button
               onClick={(e) => {
                 e.stopPropagation();

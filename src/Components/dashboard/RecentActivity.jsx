@@ -25,7 +25,7 @@ const ICON_MAP = {
 const RecentActivity = ({ activities = [] }) => {
   return (
     <div className="bg-white rounded-xl p-6 shadow-sm">
-      <h2 className="text-lg font-semibold mb-4">Recent Activity</h2>
+      <h2 className="text-lg font-semibold mb-4">Recent Investor Activity</h2>
       <div className="border-b border-gray-200 my-4"></div>
 
       {activities.length === 0 ? (

@@ -41,7 +41,7 @@ const investorMenu = [
   { label: "Settings", icon: Settings, path: "/settings" },
 ];
 
-const Sidebar = () => {
+const Sidebar = ({ closeSidebar }) => {
   const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem("user"));
   const role = user?.role || "founder";
@@ -53,9 +53,20 @@ const Sidebar = () => {
   };
 
   return (
-    <aside className="w-64 bg-white border-r px-6 py-6">
+    <aside className="w-64 bg-white border-r px-6 py-6" onClick={closeSidebar}>
       {/* logo */}
-      <img src={assets.logo5} alt="Logo" className="mb-8" />
+      <img
+        src={assets.logo5}
+        alt="Logo"
+        className="mb-8 cursor-pointer"
+        onClick={(e) => {
+          e.stopPropagation(); // parent aside click se bachao
+          navigate(
+            role === "founder" ? "/founder/dashboard" : "/investor/dashboard"
+          );
+          closeSidebar(); // mobile me sidebar close
+        }}
+      />
 
       {/* menu */}
       <nav className="space-y-2 flex-1">

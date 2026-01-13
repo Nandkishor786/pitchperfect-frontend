@@ -470,14 +470,14 @@ const Discover = ({ role }) => {
   }, [searchedData, filters, role]);
 
   return (
-    <div className="p-4 bg-gray-50 min-h-screen">
+    <div className="px-4 py-4 sm:px-6 lg:px-8 bg-gray-50 min-h-screen">
       {/* Header */}
       <DiscoverHeader role={role} search={search} setSearch={setSearch} />
 
       {/* Filters + Cards */}
-      <div className="mt-6 grid grid-cols-1 lg:grid-cols-4 gap-6">
+      <div className="mt-6 grid grid-cols-1 lg:grid-cols-4 gap-4 sm:gap-6">
         {/* Filters */}
-        <div className="h-fit">
+        <div className="h-fit lg:sticky lg:top-4 mb-4 lg:mb-0">
           <DiscoverFilters
             role={role}
             filters={filters}
@@ -486,23 +486,21 @@ const Discover = ({ role }) => {
         </div>
 
         {/* Cards */}
-        <div className="lg:col-span-3 pr-2">
+        <div className="lg:col-span-3">
           {isFallback && (
             <p className="text-yellow-600 text-sm mb-2">
               Showing public profiles. Update preferences for better matches.
             </p>
           )}
           <p
-            className={`text-sm mb-4 ${
-              filteredData.length === 0
-                ? "text-red-500 text-center"
-                : "text-green-600"
+            className={`text-sm mb-4 text-center sm:text-left ${
+              filteredData.length === 0 ? "text-red-500" : "text-green-600"
             }`}
           >
             {filteredData.length} results found
           </p>
 
-          <div className="grid sm:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
             {filteredData.map((item) =>
               role === "founder" ? (
                 <InvestorCard

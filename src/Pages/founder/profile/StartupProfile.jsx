@@ -73,7 +73,7 @@ const StartupProfile = ({ profileData = {}, onClose, embedded = false }) => {
   const content = (
     <div className="flex-1 overflow-y-auto">
       {/* ================= HEADER ================= */}
-      <div className="relative border-b px-12 py-12 bg-gradient-to-b from-indigo-50/60 to-white">
+      <div className="relative border-b px-4 py-6 sm:px-8 sm:py-10 lg:px-12 lg:py-12 bg-gradient-to-b from-indigo-50/60 to-white">
         {/* CLOSE */}
         {!embedded && (
           <button
@@ -84,20 +84,22 @@ const StartupProfile = ({ profileData = {}, onClose, embedded = false }) => {
           </button>
         )}
 
-        <div className="flex items-start justify-between gap-10">
+        <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6 lg:gap-10">
           {/* LEFT */}
-          <div className="flex gap-6">
-            <div className="w-20 h-20 rounded-2xl bg-indigo-600 flex items-center justify-center text-white text-3xl font-bold shadow-lg">
+          <div className="flex gap-4 sm:gap-6">
+            <div className="w-14 h-14 sm:w-16 sm:h-16 lg:w-20 lg:h-20 rounded-2xl bg-indigo-600 flex items-center justify-center text-white text-xl sm:text-2xl lg:text-3xl font-bold shadow-lg">
               {data.name?.charAt(0).toUpperCase()}
             </div>
 
             <div>
-              <h1 className="text-4xl font-semibold text-gray-900">
+              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-semibold text-gray-900">
                 {data.name}
               </h1>
-              <p className="text-base text-gray-600 mt-2">{data.tagline}</p>
+              <p className="text-sm sm:text-base text-gray-600 mt-2">
+                {data.tagline}
+              </p>
 
-              <div className="mt-4 flex flex-wrap gap-3">
+              <div className="mt-3 sm:mt-4 flex flex-wrap gap-2 sm:gap-3">
                 <span className="bg-indigo-100 text-indigo-700 text-sm px-4 py-1.5 rounded-full">
                   {data.productStage}
                 </span>
@@ -109,10 +111,10 @@ const StartupProfile = ({ profileData = {}, onClose, embedded = false }) => {
           </div>
 
           {/* RIGHT – REQUEST CTA */}
-          <div className="mt-6">
+          <div className="mt-4 lg:mt-6 w-full lg:w-auto">
             <button
               onClick={handleRequestConnect}
-              className="px-10 py-3 rounded-full
+              className="w-full lg:w-auto px-6 lg:px-8 py-3  rounded-full
                    text-sm font-semibold
                    bg-teal-600 text-white
                    hover:bg-teal-700
@@ -125,7 +127,7 @@ const StartupProfile = ({ profileData = {}, onClose, embedded = false }) => {
       </div>
 
       {/* ================= BODY ================= */}
-      <div className="px-10 py-12 space-y-8">
+      <div className="px-4 py-6 sm:px-8 sm:py-10 lg:px-10 lg:py-12 space-y-8">
         <Section title="Startup Overview">
           <Field label="Summary" value={data.summary} />
         </Section>
@@ -177,12 +179,12 @@ const StartupProfile = ({ profileData = {}, onClose, embedded = false }) => {
           />
           <Field label="Use of Funds" value={data.funding?.ask?.useOfFunds} />
         </Section>
-        <div className="border-t px-10 py-6 bg-gray-50">
-          <div className="flex justify-end items-center gap-4">
+        <div className="border-t px-4 sm:px-8 lg:px-10 py-4 sm:py-6 bg-gray-50">
+          <div className="flex flex-col sm:flex-row justify-end items-stretch sm:items-center gap-3 sm:gap-4">
             {data.website && (
               <button
                 onClick={handleVisitWebsite}
-                className="px-6 py-2.5 rounded-full
+                className=" w-full sm:w-auto px-6 py-2.5 rounded-full
                    border border-teal-500
                    text-teal-700
                    hover:bg-teal-50
@@ -219,7 +221,7 @@ const StartupProfile = ({ profileData = {}, onClose, embedded = false }) => {
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className="bg-white w-full max-w-5xl h-[90vh] rounded-2xl shadow-xl flex flex-col"
+        className="bg-white w-full max-w-5xl h-[95vh] sm:h-[90vh] rounded-2xl shadow-xl flex flex-col"
       >
         {content}
       </div>

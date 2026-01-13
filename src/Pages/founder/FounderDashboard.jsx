@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import StatCard from "../../Components/StatCard";
 import { Eye, Send, Heart, TrendingUp, User } from "lucide-react";
-import { fetchFounderDashboardStats } from "../../data/dummyDashboardApi";
+// import { fetchFounderDashboardStats } from "../../data/dummyDashboardApi";
 import RecentActivity from "../../Components/dashboard/RecentActivity";
 import { useNavigate } from "react-router-dom";
 import DashboardCTA from "../../Components/dashboard/DashboardCTA";
@@ -41,28 +41,49 @@ import api from "../../services/api";
 
 const FounderDashboard = () => {
   const navigate = useNavigate();
-  const [stats, setStats] = useState(null);
+  const [stats, setStats] = useState({
+    profileViews: 0,
+    pitchesSent: 0,
+    interestedInvestors: 0,
+    responseRate: 0,
+  });
   const [loading, setLoading] = useState(true);
   const [feed, setFeed] = useState([]);
 
   const name = JSON.parse(localStorage.getItem("user"))?.name || "there";
 
   // fetch dummy data from dummy api
+  // useEffect(() => {
+  //   fetchFounderDashboardStats()
+  //     .then((data) => {
+  //       setStats(data);
+  //       setLoading(false);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     })
+  //     .finally(() => {
+  //       setLoading(false);
+  //     });
+  // }, []);
+
+  //actual stats data -backend
   useEffect(() => {
-    fetchFounderDashboardStats()
-      .then((data) => {
-        setStats(data);
+    const fetchStats = async () => {
+      try {
+        const res = await api.get("/activities/founder/stats");
+        setStats(res.data);
+      } catch (err) {
+        console.error("Failed to load founder stats", err);
+      } finally {
         setLoading(false);
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
+      }
+    };
+
+    fetchStats();
   }, []);
 
-  //get activity from backend
+  //get investor activity activity from backend
   useEffect(() => {
     api
       .get("/activities/founder/feed")
@@ -89,14 +110,14 @@ const FounderDashboard = () => {
             <StatCard
               title="Profile Views"
               value={stats.profileViews}
-              change={stats.profileViewsChange}
+              // change={stats.profileViewsChange}
               icon={Eye}
             />
 
             <StatCard
               title="Pitches Sent"
               value={stats.pitchesSent}
-              change={stats.pitchesThisWeek}
+              // change={stats.pitchesThisWeek}
               icon={Send}
             />
 
@@ -109,8 +130,8 @@ const FounderDashboard = () => {
 
             <StatCard
               title="Response Rate"
-              value={stats.responseRate}
-              change={stats.responseImprovement}
+              value={stats.interestedInvestors}
+              // change={stats.responseImprovement}
               icon={TrendingUp}
             />
           </>

@@ -84,7 +84,7 @@ const Notifications = () => {
       {/* while open complete remaining screen blur and wehen we click any where it close the slider */}
       {open && (
         <motion.div
-          className="fixed inset-0 bg-black/30 z-40"
+          className="fixed inset-0 bg-black/30 z-40 sm:hidden "
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           onClick={() => setOpen(false)}
@@ -93,7 +93,7 @@ const Notifications = () => {
 
       {/*  Right Slide Drawer */}
       <motion.div
-        className="fixed top-0 right-0 h-full w-96 bg-white shadow-2xl z-50"
+        className="fixed top-0 right-0 h-full w-96 bg-white shadow-2xl z-50   "
         initial={{ x: "100%" }} //right ouside of screen
         animate={{ x: open ? 0 : "100%" }}
         transition={{
@@ -104,10 +104,10 @@ const Notifications = () => {
       >
         {/* Header */}
         <div className="px-5 py-4 border-b flex items-center justify-between">
-          <h2 className="text-lgfont-semibold">Notifications</h2>
+          <h2 className="text-lg font-semibold">Notifications</h2>
           <button
             onClick={() => setOpen(false)}
-            className="p-1 rounded hover:bg-red-100"
+            className="p-2 rounded-full hover:bg-red-100 active:scale-95 transition"
           >
             <X className="w-5 h-5 text-gray-600" />
           </button>
@@ -133,7 +133,7 @@ const Notifications = () => {
         </div>
 
         {/* Notifications */}
-        <div className="max-h-[calc(100vh-120px)] overflow-y-auto">
+        <div className="max-h-[calc(100vh-140px)] overflow-y-auto">
           {filteredNotifications.length === 0 ? (
             <p className="p-4 text-sm text-gray-500 text-center">
               No notifications
@@ -149,7 +149,7 @@ const Notifications = () => {
                 `}
               >
                 {!n.isRead && (
-                  <span className="absolute top-1/2 -translate-y-1/2 left-2 w-2 h-2 bg-green-500 rounded-full animate-pulse "></span>
+                  <span className="absolute top-1/2 -translate-y-1/2 left-3 w-2 h-2 bg-green-500 rounded-full animate-pulse "></span>
                 )}
                 <p className="text-sm">{n.text}</p>
                 <span className="text-xs text-gray-600">{n.time}</span>

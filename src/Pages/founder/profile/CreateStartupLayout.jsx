@@ -8,7 +8,7 @@ const StepLink = ({ to, end, icon, label, step }) => {
   return (
     <NavLink end={end} to={to}>
       {({ isActive }) => (
-        <div className="flex items-center gap-3 cursor-pointer">
+        <div className="flex items-center gap-3 cursor-pointer min-w-[160px]">
           {/* STEP CIRCLE */}
           <div
             className={`w-8 h-8 flex items-center justify-center rounded-full text-sm font-semibold
@@ -22,7 +22,7 @@ const StepLink = ({ to, end, icon, label, step }) => {
           </div>
 
           {/* ICON + LABEL */}
-          <div className="flex items-center gap-1 text-sm font-medium text-gray-700">
+          <div className="flex items-center gap-1 text-xs sm:text-sm font-medium text-gray-700 whitespace-nowrap">
             <IconComponent className="w-4 h-4" />
             {label}
           </div>
@@ -37,33 +37,40 @@ const CreateStartupLayout = () => {
   return (
     <div className="space-y-6">
       {/* ===== TOP STEP BAR ===== */}
-      <div className="bg-white border border-gray-200 rounded-2xl px-6 py-4">
-        <div className="flex items-center gap-4">
-          {/* STEP 1 — OVERVIEW */}
-          <StepLink
-            end
-            to="."
-            icon={LayoutDashboard}
-            label="Overview"
-            step={1}
-          />
+      <div className="bg-white border border-gray-200 rounded-2xl p-4 sm:p-6">
+        <div className="overflow-x-auto step-scroll">
+          <div className="flex items-center gap-6 flex-nowrap pb-3">
+            {/* STEP 1 — OVERVIEW */}
+            <StepLink
+              end
+              to="."
+              icon={LayoutDashboard}
+              label="Overview"
+              step={1}
+            />
 
-          {/* CONNECTOR */}
-          <div className="flex-1 h-px bg-gray-300" />
+            {/* CONNECTOR */}
+            <div className="hidden sm:block flex-1 h-px bg-gray-300" />
 
-          {/* STEP 2 — STARTUP PROFILE */}
-          <StepLink
-            to="profile"
-            icon={Building2}
-            label="Startup Profile"
-            step={2}
-          />
+            {/* STEP 2 — STARTUP PROFILE */}
+            <StepLink
+              to="profile"
+              icon={Building2}
+              label="Startup Profile"
+              step={2}
+            />
 
-          {/* CONNECTOR */}
-          <div className="flex-1 h-px bg-gray-300" />
+            {/* CONNECTOR */}
+            <div className="flex-1 h-px bg-gray-300" />
 
-          {/* STEP 3 — PUBLIC CARD */}
-          <StepLink to="startup-card" icon={Eye} label="Public Card" step={3} />
+            {/* STEP 3 — PUBLIC CARD */}
+            <StepLink
+              to="startup-card"
+              icon={Eye}
+              label="Public Card"
+              step={3}
+            />
+          </div>
         </div>
       </div>
 

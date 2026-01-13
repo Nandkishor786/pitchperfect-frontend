@@ -67,11 +67,13 @@ const StartupCardPage = () => {
 
   // ---------- UI ----------
   return (
-    <div className="max-w-5xl mx-auto p-8 space-y-8">
+    <div className="max-w-5xl mx-auto px-4 py-6 sm:px-6 lg:px-8 space-y-8">
       {/* HEADER */}
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-semibold">Startup Public Card</h1>
+          <h1 className="text-xl sm:text-2xl font-semibold">
+            Startup Public Card
+          </h1>
           <p className="text-sm text-gray-500 mt-1">
             Create and manage how your startup appears to investors.
           </p>
@@ -79,7 +81,7 @@ const StartupCardPage = () => {
 
         <button
           onClick={() => setIsModalOpen(true)}
-          className="bg-indigo-600 text-white px-5 py-2.5 rounded-lg text-sm hover:bg-indigo-700"
+          className="bg-indigo-600 text-white px-5 py-2.5 rounded-lg text-sm hover:bg-indigo-700 w-full sm:w-auto"
         >
           {existingCard ? "Edit Startup Card" : "Create Startup Card"}
         </button>
@@ -87,11 +89,11 @@ const StartupCardPage = () => {
 
       {/* CARD PREVIEW */}
       {existingCard ? (
-        <div className="flex justify-center">
+        <div className="flex justify-center overflow-x-auto">
           <StartupCard data={existingCard} isFounderView />
         </div>
       ) : (
-        <div className="bg-gray-50 border border-dashed rounded-xl p-10 text-center text-gray-500">
+        <div className="bg-gray-50 border border-dashed rounded-xl p-6 sm:p-10 text-center text-gray-500">
           No startup card yet. Click “Create Startup Card” to get started.
         </div>
       )}

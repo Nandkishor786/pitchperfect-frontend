@@ -10,4 +10,18 @@
 
 }
 
+/* ===== Horizontal scrollbar: ultra thin + indigo ===== */
+.step-scroll::-webkit-scrollbar {
+  height: 4px;            /* <<< THIS controls thickness */
+}
+
+.step-scroll::-webkit-scrollbar-thumb {
+  background-color: #6366f1; /* indigo-500 */
+  border-radius: 9999px;
+}
+
+.step-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
  

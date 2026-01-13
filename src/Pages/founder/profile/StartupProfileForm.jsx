@@ -582,8 +582,10 @@ const StartupProfileForm = ({ onSaved }) => {
   /* ================= UI ================= */
 
   return (
-    <div className="bg-white border rounded-xl p-8 max-w-4xl">
-      <h2 className="text-xl font-semibold mb-8">Startup Profile Details</h2>
+    <div className="bg-white border rounded-xl px-4 py-6 sm:px-6 sm:py-8 max-w-4xl mx-auto">
+      <h2 className="text-lg sm:text-xl font-semibold mb-6 sm:mb-8">
+        Startup Profile Details
+      </h2>
 
       <Section title="Basic Information">
         <Input
@@ -788,7 +790,7 @@ const StartupProfileForm = ({ onSaved }) => {
       </Section>
       <button
         onClick={handleSaveProfile}
-        className="mt-8 w-full bg-indigo-600 text-white py-3 rounded-lg hover:bg-indigo-700 transition"
+        className="mt-6 sm:mt-8 w-full bg-indigo-600 text-white py-3 rounded-lg hover:bg-indigo-700 transition"
       >
         Save Startup Profile
       </button>
@@ -801,7 +803,7 @@ export default StartupProfileForm;
 /* ================= UI HELPERS ================= */
 
 const Section = ({ title, children }) => (
-  <div className="mb-10 space-y-4">
+  <div className="mb-8 sm:mb-10 space-y-4">
     <h3 className="text-sm font-semibold text-gray-700 uppercase tracking-wide">
       {title}
     </h3>
@@ -815,20 +817,23 @@ const Input = ({ label, required = false, ...props }) => (
       {label}
       {required && <span className="text-red-500 ml-1">*</span>}
     </label>
-    <input {...props} className="w-full border rounded-lg p-2 mt-1" />
+    <input
+      {...props}
+      className="w-full border rounded-lg px-3 py-2 mt-1 text-sm sm:text-base"
+    />
   </div>
 );
 
 const Textarea = ({ label, required = false, ...props }) => (
   <div>
-    <label className="text-sm text-gray-600">
+    <label className="text-xs sm:text-sm text-gray-600">
       {label}
       {required && <span className="text-red-500 ml-1">*</span>}
     </label>
     <textarea
       {...props}
       rows={3}
-      className="w-full border rounded-lg p-2 mt-1"
+      className="w-full border rounded-lg px-3 py-2 mt-1 text-sm sm:text-base"
     />
   </div>
 );

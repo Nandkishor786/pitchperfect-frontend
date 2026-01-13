@@ -355,23 +355,25 @@ const StartupCardForm = ({ onSaved, existingData }) => {
 
   /* ================= UI ================= */
   return (
-    <div className="bg-white border rounded-xl p-6 max-w-4xl">
-      <h2 className="text-lg font-semibold mb-6">Startup Information</h2>
+    <div className="bg-white border rounded-xl px-4 py-6 sm:px-6 max-w-4xl mx-auto">
+      <h2 className="text-base sm:text-lg font-semibold mb-4 sm:mb-6">
+        Startup Information
+      </h2>
 
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
         <input
           name="name"
           value={form.name}
           placeholder="Startup Name"
           onChange={handleChange}
-          className="border p-2 rounded"
+          className="border px-3 py-2 rounded text-sm sm:text-base"
         />
         <input
           name="tagline"
           value={form.tagline}
           placeholder="Tagline"
           onChange={handleChange}
-          className="border p-2 rounded"
+          className="border px-3 py-2 rounded text-sm sm:text-base"
         />
 
         <input
@@ -379,14 +381,14 @@ const StartupCardForm = ({ onSaved, existingData }) => {
           value={form.industries}
           placeholder="Industries (climate, ai, saas)"
           onChange={handleChange}
-          className="border p-2 rounded"
+          className="border px-3 py-2 rounded text-sm sm:text-base"
         />
         <input
           name="stage"
           value={form.stage}
           placeholder="Stage (pre-seed / seed / series-a)"
           onChange={handleChange}
-          className="border p-2 rounded"
+          className="border px-3 py-2 rounded text-sm sm:text-base"
         />
 
         <input
@@ -394,14 +396,14 @@ const StartupCardForm = ({ onSaved, existingData }) => {
           value={form.fundingMin}
           placeholder="Funding Min"
           onChange={handleChange}
-          className="border p-2 rounded"
+          className="border px-3 py-2 rounded text-sm sm:text-base"
         />
         <input
           name="fundingMax"
           value={form.fundingMax}
           placeholder="Funding Max"
           onChange={handleChange}
-          className="border p-2 rounded"
+          className="border px-3 py-2 rounded text-sm sm:text-base"
         />
 
         <input
@@ -409,14 +411,14 @@ const StartupCardForm = ({ onSaved, existingData }) => {
           value={form.teamSize}
           placeholder="Team Size (1–10 / 11–50)"
           onChange={handleChange}
-          className="border p-2 rounded"
+          className="border px-3 py-2 rounded text-sm sm:text-base"
         />
         <input
           name="city"
           value={form.city}
           placeholder="City"
           onChange={handleChange}
-          className="border p-2 rounded"
+          className="border px-3 py-2 rounded text-sm sm:text-base"
         />
 
         <input
@@ -431,7 +433,7 @@ const StartupCardForm = ({ onSaved, existingData }) => {
           value={form.region}
           placeholder="Region (asia / europe)"
           onChange={handleChange}
-          className="border p-2 rounded"
+          className="border px-3 py-2 rounded text-sm sm:text-base"
         />
 
         <input
@@ -439,14 +441,14 @@ const StartupCardForm = ({ onSaved, existingData }) => {
           value={form.revenue}
           placeholder="Revenue (₹10L ARR)"
           onChange={handleChange}
-          className="border p-2 rounded"
+          className="border px-3 py-2 rounded text-sm sm:text-base"
         />
         <input
           name="users"
           value={form.users}
           placeholder="Users (10 enterprises)"
           onChange={handleChange}
-          className="border p-2 rounded"
+          className="border px-3 py-2 rounded text-sm sm:text-base"
         />
 
         <input
@@ -454,13 +456,13 @@ const StartupCardForm = ({ onSaved, existingData }) => {
           value={form.growth}
           placeholder="Growth (15% MoM)"
           onChange={handleChange}
-          className="border p-2 rounded col-span-2"
+          className="border px-3 py-2 rounded text-sm sm:text-base sm:col-span-2"
         />
       </div>
 
       <button
         onClick={handleGenerateStartupCard}
-        className="mt-6 w-full bg-indigo-600 text-white py-2.5 rounded-lg hover:bg-indigo-700 transition"
+        className="mt-5 sm:mt-6 w-full bg-indigo-600 text-white py-3 sm:py-2.5 rounded-lg hover:bg-indigo-700 transition text-sm"
       >
         Generate Startup Card
       </button>
