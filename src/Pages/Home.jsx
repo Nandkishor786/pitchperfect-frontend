@@ -8,19 +8,43 @@ import ContactUs from "../Components/ContactUs";
 import Footer from "../Components/Footer";
 import Challenges from "../Components/Challenges";
 import GetStart from "../Components/GetStart";
+import { useRef } from "react";
 
 const Home = ({ theme, setTheme }) => {
+  const servicesRef = useRef(null);
+  const workRef = useRef(null);
+  const contactUsRef = useRef(null);
+
+  const scrollTo = (ref) => {
+    ref?.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
-    <>  
-      <Navbar theme={theme} setTheme={setTheme} />
+    <>
+      <Navbar
+        theme={theme}
+        setTheme={setTheme}
+        scrollTo={scrollTo}
+        refs={{
+          servicesRef,
+          workRef,
+          contactUsRef,
+        }}
+      />
       <Hero />
       <TrustedBy />
       <Challenges />
-      <Services />
-      <OurWork />
+      <div ref={servicesRef}>
+        <Services />
+      </div>
+      <div ref={workRef} >
+        <OurWork />
+      </div>
       <Teams />
+      <div ref={contactUsRef} >
+        <ContactUs />
+      </div>
       <GetStart />
-      {/* <ContactUs /> */}
       <Footer theme={theme} />
     </>
   );

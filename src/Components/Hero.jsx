@@ -3,7 +3,6 @@ import assets from "../assets/assets";
 import { motion } from "motion/react";
 import { Navigate, useNavigate } from "react-router-dom";
 
-
 const Hero = () => {
   const navigate = useNavigate();
 
