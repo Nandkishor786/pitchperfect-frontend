@@ -1,10 +1,24 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import assets from "../assets/assets";
 import { motion } from "motion/react";
 import { Navigate, useNavigate } from "react-router-dom";
+import { getUsersCount } from "../services/UserApi";
 
 const Hero = () => {
   const navigate = useNavigate();
+  const [userCount, setUserCount] = useState(null);
+
+  useEffect(() => {
+    const fetchUsers = async () => {
+      try {
+        const count = await getUsersCount();
+        setUserCount(count);
+      } catch (err) {
+        console.error("Failed to fetch users count", err);
+      }
+    };
+    fetchUsers();
+  }, []);
 
   return (
     <div
@@ -20,7 +34,12 @@ const Hero = () => {
         className="inline-flex items-center gap-2 border border-gray-300  p-1.5 pr-4 rounded-full"
       >
         <img src={assets.group_profile} alt="" className="w-20" />
-        <p className="text-xl font-medium">Trusted by 10k+ people</p>
+        <p className="text-xl font-medium">
+          Trusted by{" "}
+          <span className="text-indigo-600 font-bold">
+            {userCount !== null ? `${userCount}+` : "many"} people
+          </span>
+        </p>
       </motion.div>
 
       <motion.h1
@@ -30,11 +49,11 @@ const Hero = () => {
         viewport={{ once: true }}
         className="text-4xl sm:text-5xl md:text-6xl xl:text-[83px] font-medium xl:leading-95  max-w-5xl"
       >
-        Where Founders {" "}
+        Where Founders{" "}
         <span className="bg-gradient-to-r from-[#5044E5] to-[#4d8eca] bg-clip-text text-transparent ">
-        and Investors 
+          and Investors
         </span>{" "}
-      Connect.
+        Connect.
       </motion.h1>
 
       <motion.p
@@ -53,7 +72,7 @@ const Hero = () => {
           onClick={() => navigate("/signup?role=founder")}
           className="bg-primary hover:bg-indigo-800 rounded-xl text-white font-bold text-lg px-8 py-5  cursor-pointer  transition-all duration-300 ease-out "
         >
-          Join as Founder 
+          Join as Founder
         </button>
         <button
           onClick={() => navigate("/signup?role=investor")}
