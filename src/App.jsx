@@ -40,7 +40,7 @@ import InvestorProfilePage from "./Pages/investor/profile/InvestorProfilePage";
 import StartupOverview from "./Pages/founder/profile/StartupOverview";
 import StartupProfilePage from "./Pages/founder/profile/StartupProfilePage";
 import { getUserFromStorage } from "./utils/auth";
-import OAuthSuccess from "./pages/OAuthSuccess";
+import OAuthSuccess from "./Pages/OAuthSuccess";
 
 
 function App() {
