@@ -101,7 +101,9 @@ const FounderPreferences = () => {
   //BACKEND
   const handleFinish = async () => {
     try {
+      const user = getUserFromStorage();
       const res = await api.post("/onboarding/founder", {
+        userId: user.id,
         preferences: formData,
       });
 

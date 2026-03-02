@@ -141,7 +141,7 @@ const Topbar = ({ onMenuClick }) => {
         {/* names */}
         <div className="hidden sm:flex flex-col justify-center items-center">
           <span className="text-sm text-gray-800 font-medium">
-            {user.name || "User"}
+            {user?.name || "User"}
           </span>
           <span className="text-xs text-gray-500 font-normal">{role}</span>
         </div>

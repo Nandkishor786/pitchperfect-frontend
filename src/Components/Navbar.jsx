@@ -24,11 +24,11 @@ const Navbar = ({ theme, setTheme, scrollTo, refs }) => {
       className=" flex justify-between items-center px-4 sm:px-12 lg:px-24 xl:px-40 py-4  sticky top-0 z-20 backdrop:blur-xl font-medium bg-white dark:bg-gray-900"
       //sticky  :we make this parent as conatiner for dropdown menu
     >
-      <img
+     <a href="#hero"> <img
         src={theme === "dark" ? assets.logo_dark5 : assets.logo5}
         alt=""
         className="w-40 sm::w-40"
-      />
+      /></a>
       {/* these shown on both desktop or mobile */}
       {/* div for navlinks for both mobile and desktop  */}
       {/* max-sm =mobile screens */}

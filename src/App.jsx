@@ -40,6 +40,8 @@ import InvestorProfilePage from "./Pages/investor/profile/InvestorProfilePage";
 import StartupOverview from "./Pages/founder/profile/StartupOverview";
 import StartupProfilePage from "./Pages/founder/profile/StartupProfilePage";
 import { getUserFromStorage } from "./utils/auth";
+import OAuthSuccess from "./pages/OAuthSuccess";
+
 
 function App() {
   const user = getUserFromStorage();
@@ -130,6 +132,7 @@ function App() {
         <Route path="/" element={<Home theme={theme} setTheme={setTheme} />} />
         <Route path="/signup" element={<Signup theme={theme} />} />
         <Route path="/login" element={<Login theme={theme} />} />
+        <Route path="/oauth-success" element={<OAuthSuccess />} />
         {/* onbarding parent routes(OnboardingRedirect)  */}
         <Route path="/onboarding" element={<OnboardingRedirect />} />
         <Route

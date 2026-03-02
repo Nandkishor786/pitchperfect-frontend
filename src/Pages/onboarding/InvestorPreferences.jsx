@@ -104,7 +104,10 @@ const InvestorPreferences = () => {
   //BACKEND
   const handleFinish = async () => {
     try {
+          const user = getUserFromStorage();
+
       const res = await api.post("/onboarding/investor", {
+       userId: user.id,   
         preferences: formData,
       });
 

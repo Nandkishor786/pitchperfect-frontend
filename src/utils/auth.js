@@ -5,7 +5,7 @@ export const getUserFromStorage = () => {
 
     const user = JSON.parse(raw);
 
-    if (!user?.role || !user?.id) return null;
+    if (!user?.role) return null;
 
     return user;
   } catch (err) {

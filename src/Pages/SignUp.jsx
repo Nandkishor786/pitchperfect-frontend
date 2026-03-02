@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import assets from "../assets/assets";
-import { useSearchParams, useNavigate } from "react-router-dom";
+import { useSearchParams, useNavigate, Link } from "react-router-dom";
 import { showToast } from "../utils/showToast";
 import { Check } from "lucide-react";
 // import { generateUserId } from "../utils/generateUserId";,
@@ -99,17 +99,24 @@ const SignUp = ({ theme }) => {
       setIsSubmitting(false);
     }
   };
-
+  
+  const handleGoogleSignup = () => {
+  window.location.href = `${import.meta.env.VITE_API_BASE_URL}/auth/google?role=${userRole}`;
+};
+  
   return (
     <div className=" flex flex-col sm:flex-row justify-start items-start min-w-full min-h-screen gap-12 ">
       {/* {Image} */}
       <div className="sm:w-3/5 min-h-screen p-4 space-y-12 ">
         <div className="pl-4 sm:pl-8 ">
-          <img
-            src={theme === "dark" ? assets.logo_dark5 : assets.logo5}
-            alt=""
-            className=""
-          />
+          <Link to="/">
+            {" "}
+            <img
+              src={theme === "dark" ? assets.logo_dark5 : assets.logo5}
+              alt=""
+              className=""
+            />
+          </Link>
         </div>
         <div className="flex justify-center items-center">
           <img
@@ -149,7 +156,10 @@ const SignUp = ({ theme }) => {
 
         {/* google sign up */}
         <div className="w-full pt-6 ">
-          <button className="text-sm font-medium flex justify-center items-center gap-3  px-4 py-2 w-full rounded-md border border-gray-500 hover:bg-gray-200 focus:outline-none dark:text-white ">
+          <button
+            onClick={handleGoogleSignup}
+            className="text-sm font-medium flex justify-center items-center gap-3  px-4 py-2 w-full rounded-md border border-gray-500 hover:bg-gray-200 focus:outline-none dark:text-white "
+          >
             <img src={assets.google} alt="" className="w-6 h-6" />
             Sign up with Google
           </button>

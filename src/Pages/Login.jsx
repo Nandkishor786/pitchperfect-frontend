@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import assets from "../assets/assets";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import toast from "react-hot-toast";
 import { showToast } from "../utils/showToast";
 import { Check } from "lucide-react";
@@ -60,7 +60,7 @@ const Login = ({ theme }) => {
       const res = await api.post("/auth/login", {
         email: e.target.email.value,
         password: e.target.password.value,
-        role: userRole, // optional if backend ignores
+        role: userRole, 
       });
 
       const { token, user } = res.data;
@@ -88,11 +88,14 @@ const Login = ({ theme }) => {
     }
   };
 
+const handleGoogleLogin = () => {
+  window.location.href = `${import.meta.env.VITE_API_BASE_URL}/auth/google?role=${userRole}`;
+};
   return (
     <div className=" flex flex-col sm:flex-row justify-start items-start min-w-full min-h-screen gap-12 ">
       {/* Login form */}
       <div
-        className="sm:w-2/5 px-6 sm:px-12 flex flex-col
+        className="sm:w-2/5 p x-6 sm:px-12 flex flex-col
            justify-center items -center pt-4"
       >
         <div className="space-y-4  ">
@@ -109,7 +112,8 @@ const Login = ({ theme }) => {
 
         {/* google sign up */}
         <div className="w-full pt-6 ">
-          <button className="text-sm font-medium flex justify-center items-center gap-3  px-4 py-2 w-full rounded-md border border-gray-500 hover:bg-gray-200 focus:outline-none dark:text-white ">
+          <button onClick={handleGoogleLogin}
+          className="text-sm font-medium flex justify-center items-center gap-3  px-4 py-2 w-full rounded-md border border-gray-500 hover:bg-gray-200 focus:outline-none dark:text-white ">
             <img src={assets.google} alt="" className="w-6 h-6" />
             Sign up with Google
           </button>
@@ -197,11 +201,11 @@ const Login = ({ theme }) => {
       {/* {Image} */}
       <div className="sm:w-3/5 min-h-screen p-4 space-y-12 ">
         <div className="pl-4 sm:pl-8 ">
-          <img
+          <Link to="/"><img
             src={theme === "dark" ? assets.logo_dark5 : assets.logo5}
             alt=""
             className=""
-          />
+          /></Link>
         </div>
         <div className="flex justify-center items-center">
           <img
